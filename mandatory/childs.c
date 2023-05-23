@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:27:38 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/22 00:40:40 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:04:40 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static char	*ft_get_bin(char **paths, char *cmd)
 	char	*command;
 
 	i = 0;
+	if (access(cmd, F_OK) == 0)
+		return (cmd);
 	while (paths[i])
 	{
 		tmp = ft_join(paths[i], "/");
@@ -39,12 +41,21 @@ void	ft_second_child(t_pipex pipex, char **args, char **env)
 	dup2(pipex.fd_out, 1);
 	pipex.cmd_args = ft_split(args[3], ' ');
 	if (pipex.cmd_args == NULL)
+	{
+		ft_free_path(pipex.cmd_args);
 		ft_error("Malloc");
+	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
 	if (pipex.cmd == NULL)
+	{
+		ft_free_path(pipex.cmd_args);
 		ft_error("No bin");
+	}
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
+	{
+		ft_free_path(pipex.cmd_args);
 		ft_error("EXEC");
+	}
 }
 
 void	ft_first_child(t_pipex pipex, char **args, char **env)
@@ -56,12 +67,21 @@ void	ft_first_child(t_pipex pipex, char **args, char **env)
 		exit (0);
 	pipex.cmd_args = ft_split(args[2], ' ');
 	if (pipex.cmd_args == NULL)
+	{
+		ft_free_path(pipex.cmd_args);
 		ft_error("Malloc");
+	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
 	if (pipex.cmd == NULL)
+	{
+		ft_free_path(pipex.cmd_args);
 		ft_error("No bin");
+	}
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
+	{
+		ft_free_path(pipex.cmd_args);
 		ft_error("EXEC");
+	}
 }
 
 void	ft_process(t_pipex *pipex, char **args, char **env)

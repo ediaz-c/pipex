@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 19:38:50 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/23 19:21:04 by ediaz--c         ###   ########.fr       */
+/*   Created: 2023/05/23 19:31:06 by ediaz--c          #+#    #+#             */
+/*   Updated: 2023/05/23 20:05:12 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
-void	ft_puterror(char *err)
+int	main(int ac, char *av[], char *ev[])
 {
-	write(2, err, ft_strlen(err));
-	exit(0);
-}
-
-void	ft_error(char *err)
-{
-	perror(err);
-	exit(0);
+	t_pipex	pipex;
+	
+	if (ac < 5)
+		ft_puterror("Numeros de argumentos invalidos\n");
+	if (ev)
+		ft_check_files(&pipex, av, ac);
 }
