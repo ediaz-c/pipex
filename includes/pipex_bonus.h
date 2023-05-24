@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:17:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/23 19:53:39 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:56:25 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,31 @@
 # define READ 0
 # define WRITE 1
 
+# define FDR 0
+# define FDW 1
 typedef struct s_pipex
 {
-	pid_t	*pid;
-	int		fd_move[2];
-	int		fd_rw[2];
+	pid_t	pid;
+	int		fd_pipe[2][2];
 	int		fd_in;
 	int		fd_out;
+	int		is_hd;
+	int		n_args;
 	char	**path_bin;
 	char	**cmd_args;
 	char	*cmd;
 }	t_pipex;
 
 void	ft_puterror(char *err);
+void	ft_error(char *err);
 void	ft_check_files(t_pipex	*pipex, char **args, int n_args);
 char	*ft_join(char const *s1, char const *s2);
+int		ft_find_path(t_pipex *pipex, char **env);
+char	*ft_get_bin(char **paths, char *cmd);
+void	ft_free_path(char **args);
+void	ft_childs(t_pipex *pipex, char *args, char **env, int index);
+void	ft_wait(int n_cmds);
+void	ft_first_child(t_pipex pipex, char *args, char **env);
+void	ft_last_child(t_pipex pipex, char *args, char **env);
+void	ft_middle_childs(t_pipex pipex, char *args, char **env);
 #endif

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   ft_join_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 19:32:14 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/24 12:24:17 by ediaz--c         ###   ########.fr       */
+/*   Created: 2023/05/23 19:52:46 by ediaz--c          #+#    #+#             */
+/*   Updated: 2023/05/24 17:58:52 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-void	ft_puterror(char *err)
+char	*ft_join(char const *s1, char const *s2)
 {
-	write(2, err, ft_strlen(err));
-	exit(0);
-}
+	size_t	len1;
+	size_t	len2;
+	char	*join;
 
-void	ft_error(char *err)
-{
-	perror(err);
-	exit(0);
+	if (!s1 && !s2)
+		return (NULL);
+	len1 = ft_strlen((char *)s1);
+	len2 = ft_strlen((char *)s2);
+	join = malloc(sizeof(char) * len1 + len2 + 1);
+	if (!join)
+		return (NULL);
+	ft_memmove(join, s1, len1);
+	ft_memmove(join + len1, s2, len2);
+	join[len1 + len2] = '\0';
+	return (join);
 }

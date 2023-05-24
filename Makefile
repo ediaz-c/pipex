@@ -1,6 +1,6 @@
 NAME		=	pipex
-CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CC			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
 RM			=	rm -rf
 SANITIZE	=	-fsanitize=address
 DEBUG		=	-g3
@@ -21,8 +21,8 @@ LIBFT		=	libft/libft.a
 #
 #
 #
-SRC_BONUS	=	main_bonus.c
-UTILS_BONUS	=	check_files_bonus.c error_bonus.c ft_join.c
+SRC_BONUS	=	main_bonus.c childs_bonus.c
+UTILS_BONUS	=	check_files_bonus.c error_bonus.c ft_join_bonus.c path_bonus.c free_bonus.c ft_wait.c
 
 # Rutas
 DIR_SRC_BONUS	=	$(addprefix bonus/, $(SRC_BONUS))

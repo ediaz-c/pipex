@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 19:32:14 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/24 12:24:17 by ediaz--c         ###   ########.fr       */
+/*   Created: 2023/05/24 17:33:39 by ediaz--c          #+#    #+#             */
+/*   Updated: 2023/05/24 17:34:22 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-void	ft_puterror(char *err)
+void	ft_free_path(char **args)
 {
-	write(2, err, ft_strlen(err));
-	exit(0);
-}
+	int	i;
 
-void	ft_error(char *err)
-{
-	perror(err);
-	exit(0);
+	i = 0;
+	while (args[i])
+		free(args[i++]);
+	free (args);
 }
