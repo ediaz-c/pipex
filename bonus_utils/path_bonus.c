@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:53:20 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/24 17:28:52 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:28:24 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_find_path(t_pipex *pipex, char **env)
 
 	i = 0;
 	j = 0;
-	while ((ft_strnstr(env[i], "PATH=", 5) == 0) && env[i])
+	while ((ft_strnstr(env[i], "PATH=", 5) == 0))
 		i++;
 	if (env[i] == NULL)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:06 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/24 18:00:52 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:45:00 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,21 @@ static void	ft_process(t_pipex *pipex, int n_args, char **args, char **env)
 	index_cmd = 2 + pipex->is_hd;
 	pipex->n_args = n_args;
 	close(pipex->fd_pipe[FDR][WRITE]);
-	while (i < n_cmd && env && args)
+	while (i < n_cmd)
 	{
-		ft_childs(pipex, args[index_cmd], env, index_cmd);
-		if (dup2(pipex->fd_pipe[FDR][READ], pipex->fd_pipe[FDW][READ]) == -1)
+		pipe(pipex->fd_pipe[FDW]);
+		ft_childs(pipex, args[index_cmd + i], env, index_cmd  + i);
+		if (dup2(pipex->fd_pipe[FDW][READ], pipex->fd_pipe[FDR][READ]) == -1)
 		{
 			exit(1);
 		}
 		i++;
-		index_cmd += i;
 	}
+	close(pipex->fd_in);
+	close(pipex->fd_pipe[FDR][READ]);
+	close(pipex->fd_pipe[FDW][WRITE]);
+	close(pipex->fd_pipe[FDW][READ]);
+	close(pipex->fd_out);
 	ft_wait(n_cmd);
 }
 
