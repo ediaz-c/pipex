@@ -22,7 +22,7 @@ LIBFT		=	libft/libft.a
 #
 #
 SRC_BONUS	=	main_bonus.c childs_bonus.c
-UTILS_BONUS	=	check_files_bonus.c error_bonus.c ft_join_bonus.c path_bonus.c free_bonus.c ft_wait.c
+UTILS_BONUS	=	check_files_bonus.c error_bonus.c ft_join_bonus.c path_bonus.c free_bonus.c ft_wait.c pipes_bonus.c
 
 # Rutas
 DIR_SRC_BONUS	=	$(addprefix bonus/, $(SRC_BONUS))

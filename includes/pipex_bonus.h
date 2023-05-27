@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:17:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/26 10:26:43 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/27 17:20:19 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_pipex
 	int		fd_out;
 	int		is_hd;
 	int		n_args;
+	int		n_cmds;
 	char	**path_bin;
 	char	**cmd_args;
 	char	*cmd;
@@ -45,9 +46,11 @@ char	*ft_join(char const *s1, char const *s2);
 int		ft_find_path(t_pipex *pipex, char **env);
 char	*ft_get_bin(char **paths, char *cmd);
 void	ft_free_path(char **args);
-void	ft_childs(t_pipex *pipex, char *args, char **env, int index);
+void	ft_childs(t_pipex *pipex, char *args, char **env);
 void	ft_wait(int n_cmds);
-void	ft_first_child(t_pipex pipex);
-void	ft_last_child(t_pipex pipex);
-void	ft_middle_childs(t_pipex pipex);
+void	ft_exec(t_pipex pipex, char *args, char **env);
+// void	ft_first_child(t_pipex pipex);
+// void	ft_last_child(t_pipex pipex);
+// void	ft_middle_childs(t_pipex pipex);
+void open_pipe(int	*fd);
 #endif
