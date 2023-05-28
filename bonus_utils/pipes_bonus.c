@@ -6,13 +6,13 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:34:57 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/27 15:49:39 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:34:09 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-void open_pipe(int	*fd)
+void	open_pipe(int *fd)
 {
 	if (pipe(fd) == -1)
 		ft_error("pipe");

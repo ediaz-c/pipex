@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:17:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/27 17:20:19 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/28 18:18:15 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 # define FDR 0
 # define FDW 1
+
 typedef struct s_pipex
 {
 	pid_t	pid;
-	int		fd_pipe[2][2];
 	int		fd_in;
 	int		fd_out;
 	int		is_hd;
@@ -49,8 +49,5 @@ void	ft_free_path(char **args);
 void	ft_childs(t_pipex *pipex, char *args, char **env);
 void	ft_wait(int n_cmds);
 void	ft_exec(t_pipex pipex, char *args, char **env);
-// void	ft_first_child(t_pipex pipex);
-// void	ft_last_child(t_pipex pipex);
-// void	ft_middle_childs(t_pipex pipex);
-void open_pipe(int	*fd);
+void	open_pipe(int *fd);
 #endif

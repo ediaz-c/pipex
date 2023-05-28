@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:34:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/27 15:50:19 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:32:23 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_create_heredoc(char	*limiter)
 	if (pid == 0)
 	{
 		close(fd[0]);
-		while(1)
+		while (1)
 		{
 			write(0, "heredoc> ", 9);
 			line = get_next_line(0);
@@ -43,12 +43,14 @@ static void	ft_create_heredoc(char	*limiter)
 
 void	ft_check_files(t_pipex	*pipex, char **args, int n_args)
 {
-	if (ft_strncmp(args[1], "here_doc", ft_strlen("here_doc")) == 0 && n_args && pipex)
+	if (ft_strncmp(args[1], "here_doc", ft_strlen("here_doc")) == 0
+		&& n_args && pipex)
 	{
 		if (n_args < 6)
 			ft_puterror("Numero de argumentos invalido con 'heredoc'\n");
 		ft_create_heredoc(args[2]);
-		pipex->fd_out = open(args[n_args - 1], O_CREAT | O_WRONLY, 0000644);
+		pipex->fd_out = open(args[n_args - 1],
+				O_CREAT | O_WRONLY | O_APPEND, 0000644);
 		pipex->is_hd = 1;
 	}
 	else
