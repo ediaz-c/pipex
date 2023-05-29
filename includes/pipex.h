@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 19:36:41 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/22 00:27:45 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:53:14 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_pipex
 void	ft_find_path(t_pipex *pipex, char **ev);
 void	ft_free_path(char **args);
 char	*ft_join(char *s1, char *s2);
-void	ft_error(char *err);
-void	ft_puterror(char *err);
+void	ft_error(char *err, int nexit);
+void	ft_puterror(char *err, int nexit);
 void	ft_first_child(t_pipex pipex, char **args, char **env);
 void	ft_second_child(t_pipex pipex, char **args, char **env);
 void	ft_process(t_pipex *pipex, char **args, char **env);

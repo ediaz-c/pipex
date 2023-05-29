@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:27:38 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/23 20:04:40 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:58:00 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ void	ft_second_child(t_pipex pipex, char **args, char **env)
 	if (pipex.cmd_args == NULL)
 	{
 		ft_free_path(pipex.cmd_args);
-		ft_error("Malloc");
+		ft_error("Malloc", 0);
 	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
 	if (pipex.cmd == NULL)
 	{
 		ft_free_path(pipex.cmd_args);
-		ft_error("No bin");
+		ft_error("command not found", 127);
 	}
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
 	{
 		ft_free_path(pipex.cmd_args);
-		ft_error("EXEC");
+		ft_error("EXEC", 127);
 	}
 }
 
@@ -69,18 +69,18 @@ void	ft_first_child(t_pipex pipex, char **args, char **env)
 	if (pipex.cmd_args == NULL)
 	{
 		ft_free_path(pipex.cmd_args);
-		ft_error("Malloc");
+		ft_error("Malloc", 0);
 	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
 	if (pipex.cmd == NULL)
 	{
 		ft_free_path(pipex.cmd_args);
-		ft_error("No bin");
+		ft_error("command not found", 127);
 	}
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
 	{
 		ft_free_path(pipex.cmd_args);
-		ft_error("EXEC");
+		ft_error("EXEC", 127);
 	}
 }
 
@@ -90,12 +90,12 @@ void	ft_process(t_pipex *pipex, char **args, char **env)
 	if (pipex->pid1 == 0)
 		ft_first_child(*pipex, args, env);
 	if (pipex->pid1 < 0)
-		ft_error("PID");
+		ft_error("PID", 0);
 	pipex->pid2 = fork();
 	if (pipex->pid2 == 0)
 		ft_second_child(*pipex, args, env);
 	if (pipex->pid2 < 0)
-		ft_error("PID");
+		ft_error("PID", 0);
 	ft_close_pipes(pipex);
 	waitpid(pipex->pid1, NULL, 0);
 	waitpid(pipex->pid2, NULL, 0);

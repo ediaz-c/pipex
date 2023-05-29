@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 15:55:45 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/23 19:20:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:53:41 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	ft_find_path(t_pipex *pipex, char **ev)
 	while (ft_strnstr(ev[i], "PATH=", 5) == 0)
 		i++;
 	if (ev[i] == NULL)
-		ft_puterror("Variables de entorno");
+		ft_puterror("Variables de entorno", 1);
 	tmp = ft_strchr(ev[i], '/');
 	if (tmp == NULL)
-		ft_puterror("Variables de entorno");
+		ft_puterror("Variables de entorno", 1);
 	pipex->path = tmp;
 	pipex->path_bin = ft_split(pipex->path, ':');
 	if (pipex->path_bin == NULL)
-		ft_puterror("Variables de entorno");
+		ft_puterror("Variables de entorno", 1);
 }
