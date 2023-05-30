@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:53:20 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 17:34:41 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:13:01 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_get_bin(char **paths, char *cmd)
 	char	*command;
 
 	i = 0;
+	if (cmd == NULL)
+		return (NULL);
 	if (!ft_strncmp(cmd, "/", 1) || !ft_strncmp(cmd, "./", 2)
 		|| !ft_strncmp(cmd, "../", 3))
 		return (cmd);
