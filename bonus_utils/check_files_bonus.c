@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:34:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/28 17:32:23 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:08:28 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	ft_check_files(t_pipex	*pipex, char **args, int n_args)
 	{
 		pipex->fd_in = open(args[1], O_RDONLY);
 		if (pipex->fd_in < 0)
-			ft_error("Open infile");
+			ft_error("Open infile", 1);
 		pipex->fd_out = open(args[n_args - 1],
 				O_TRUNC | O_CREAT | O_WRONLY, 0000644);
 		pipex->is_hd = 0;
 		dup2(pipex->fd_in, 0);
 	}
 	if (pipex->fd_out < 0)
-		ft_error("Open outfile");
+		ft_error("Open outfile", 1);
 }

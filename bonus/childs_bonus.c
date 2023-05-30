@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:57:54 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 13:04:08 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:09:56 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	ft_exec(t_pipex pipex, char *args, char **env)
 	if (pipex.cmd_args == NULL)
 	{
 		ft_free_path(pipex.cmd_args);
-		exit(1);
+		ft_puterror("args");
 	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
-	if (pipex.cmd == NULL)
-	{
-		free(pipex.cmd);
-		ft_free_path(pipex.cmd_args);
-		exit(127);
-	}
+	// if (pipex.cmd == NULL)
+	// {
+	// 	free(pipex.cmd);
+	// 	ft_free_path(pipex.cmd_args);
+	// 	exit(127);
+	// }
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
 	{
 		free(pipex.cmd);
 		ft_free_path(pipex.cmd_args);
-		exit(127);
+		ft_error("exec", 127);
 	}
 	free(pipex.cmd);
 	ft_free_path(pipex.cmd_args);
@@ -43,7 +43,7 @@ void	ft_childs(t_pipex *pipex, char *args, char **env)
 	int	child_pipe[2];
 
 	if (pipe(child_pipe) == -1)
-		ft_error("pipe");
+		ft_error("pipe", 0);
 	pipex->pid = fork();
 	if (pipex->pid == 0)
 	{
