@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:17:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/28 18:18:15 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:47:11 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_puterror(char *err);
 void	ft_error(char *err);
 void	ft_check_files(t_pipex	*pipex, char **args, int n_args);
 char	*ft_join(char const *s1, char const *s2);
-int		ft_find_path(t_pipex *pipex, char **env);
+void	ft_find_path(t_pipex *pipex, char **env);
 char	*ft_get_bin(char **paths, char *cmd);
 void	ft_free_path(char **args);
 void	ft_childs(t_pipex *pipex, char *args, char **env);

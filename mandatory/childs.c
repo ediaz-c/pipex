@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:27:38 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/29 18:58:00 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:01:11 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static char	*ft_get_bin(char **paths, char *cmd)
 	i = 0;
 	if (access(cmd, F_OK) == 0)
 		return (cmd);
+	if (paths == NULL)
+		return (NULL);
 	while (paths[i])
 	{
 		tmp = ft_join(paths[i], "/");
@@ -46,11 +48,6 @@ void	ft_second_child(t_pipex pipex, char **args, char **env)
 		ft_error("Malloc", 0);
 	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
-	if (pipex.cmd == NULL)
-	{
-		ft_free_path(pipex.cmd_args);
-		ft_error("command not found", 127);
-	}
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
 	{
 		ft_free_path(pipex.cmd_args);
@@ -72,11 +69,6 @@ void	ft_first_child(t_pipex pipex, char **args, char **env)
 		ft_error("Malloc", 0);
 	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
-	if (pipex.cmd == NULL)
-	{
-		ft_free_path(pipex.cmd_args);
-		ft_error("command not found", 127);
-	}
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
 	{
 		ft_free_path(pipex.cmd_args);

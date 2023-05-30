@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:34:22 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/23 19:28:56 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:02:09 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free_path(char **args)
 	int	i;
 
 	i = 0;
-	while (args[i])
+	while (args && args[i])
 		free(args[i++]);
 	free (args);
 }

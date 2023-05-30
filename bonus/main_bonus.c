@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:06 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/28 17:30:49 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:47:29 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int ac, char *av[], char *ev[])
 	if (ac < 5)
 		ft_puterror("Numeros de argumentos invalidos\n");
 	ft_check_files(&pipex, av, ac);
-	if (ft_find_path(&pipex, ev) == 0)
-		ft_puterror("Error en el 'PATH'\n");
+	ft_find_path(&pipex, ev);
 	ft_process(&pipex, ac, av, ev);
 }

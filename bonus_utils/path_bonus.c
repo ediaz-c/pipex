@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:53:20 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/28 17:33:53 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 12:59:00 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_get_bin(char **paths, char *cmd)
 	i = 0;
 	if (access(cmd, F_OK) == 0)
 		return (cmd);
+	if (paths == NULL)
+		return (NULL);
 	while (paths[i])
 	{
 		tmp = ft_join(paths[i], "/");
@@ -34,7 +36,7 @@ char	*ft_get_bin(char **paths, char *cmd)
 	return (NULL);
 }
 
-int	ft_find_path(t_pipex *pipex, char **env)
+void	ft_find_path(t_pipex *pipex, char **env)
 {
 	int		i;
 	int		j;
@@ -42,15 +44,18 @@ int	ft_find_path(t_pipex *pipex, char **env)
 
 	i = 0;
 	j = 0;
-	while ((ft_strnstr(env[i], "PATH=", 5) == 0))
+	while (env[i] && ft_strnstr(env[i], "PATH=", 5) == 0)
 		i++;
-	if (env[i] == NULL)
-		return (0);
+	if (!env[i])
+	{
+		pipex->path_bin = NULL;
+		return ;
+	}
 	tmp = ft_strchr(env[i], '/');
 	if (tmp == NULL)
-		return (0);
+		return ;
 	pipex->path_bin = ft_split(tmp, ':');
 	if (pipex->path_bin == NULL)
-		return (0);
-	return (1);
+		return ;
+	return ;
 }
