@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:06 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 14:05:42 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:44:03 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int	main(int ac, char *av[], char *ev[])
 	ft_check_files(&pipex, av, ac);
 	ft_find_path(&pipex, ev);
 	ft_process(&pipex, ac, av, ev);
+	system("leaks -q pipex");
 }

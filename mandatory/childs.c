@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:27:38 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 16:46:48 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:09:42 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static char	*ft_get_bin(char **paths, char *cmd)
 	char	*command;
 
 	i = 0;
-	if (access(cmd, F_OK) == 0)
+	if (!ft_strncmp(cmd, "/", 1) || !ft_strncmp(cmd, "./", 2)
+		|| !ft_strncmp(cmd, "../", 3))
 		return (cmd);
 	if (paths == NULL)
 		return (NULL);
@@ -57,7 +58,7 @@ void	ft_second_child(t_pipex pipex, char **args, char **env)
 
 void	ft_first_child(t_pipex pipex, char **args, char **env)
 {
-	// dup2(pipex.fd[WRITE], 1);
+	dup2(pipex.fd[WRITE], 1);
 	close(pipex.fd[WRITE]);
 	dup2(pipex.fd_in, 0);
 	if (pipex.fd_in < 0)

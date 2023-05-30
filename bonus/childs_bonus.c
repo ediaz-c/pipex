@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:57:54 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 13:09:56 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:43:38 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,11 @@ void	ft_exec(t_pipex pipex, char *args, char **env)
 		ft_puterror("args");
 	}
 	pipex.cmd = ft_get_bin(pipex.path_bin, pipex.cmd_args[0]);
-	// if (pipex.cmd == NULL)
-	// {
-	// 	free(pipex.cmd);
-	// 	ft_free_path(pipex.cmd_args);
-	// 	exit(127);
-	// }
 	if (execve(pipex.cmd, pipex.cmd_args, env) == -1)
 	{
 		free(pipex.cmd);
-		ft_free_path(pipex.cmd_args);
+		if (ft_strncmp(pipex.cmd, pipex.cmd_args[0], ft_strlen(pipex.cmd)) != 0)
+			ft_free_path(pipex.cmd_args);
 		ft_error("exec", 127);
 	}
 	free(pipex.cmd);
