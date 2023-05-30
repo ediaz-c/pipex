@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 19:34:32 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 17:53:08 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:10:44 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ int	main(int ac, char *av[], char *ev[])
 {
 	t_pipex	pipex;
 
-	if (ac == 1)
-		exit(1);
 	if (ac != 5)
 		ft_puterror("Numero de argumentos invalidos\n", 1);
 	pipex.fd_in = open(av[1], O_RDONLY);
 	if (pipex.fd_in < 0)
-		ft_error("infile", 0);
+		ft_error("infile", 1);
 	pipex.fd_out = open(av[ac - 1], O_TRUNC | O_CREAT | O_WRONLY, 0000644);
 	if (pipex.fd_out < 0)
 		ft_error("Outfile", 22);
