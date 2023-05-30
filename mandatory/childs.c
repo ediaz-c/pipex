@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:27:38 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 13:01:11 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:46:48 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_second_child(t_pipex pipex, char **args, char **env)
 
 void	ft_first_child(t_pipex pipex, char **args, char **env)
 {
-	dup2(pipex.fd[WRITE], 1);
+	// dup2(pipex.fd[WRITE], 1);
 	close(pipex.fd[WRITE]);
 	dup2(pipex.fd_in, 0);
 	if (pipex.fd_in < 0)
