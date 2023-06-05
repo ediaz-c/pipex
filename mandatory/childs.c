@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:27:38 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/05/30 20:13:21 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:55:07 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	ft_first_child(t_pipex pipex, char **args, char **env)
 	dup2(pipex.fd[WRITE], 1);
 	close(pipex.fd[WRITE]);
 	dup2(pipex.fd_in, 0);
-	if (pipex.fd_in < 0)
-		exit (0);
 	pipex.cmd_args = ft_split(args[2], ' ');
 	if (pipex.cmd_args == NULL)
 	{
